@@ -1,11 +1,18 @@
 'use strict';
 
-// creating back of memory card and add to memoryboard
-let card = document.createElement('div');
-card.className = 'backofcard';
-document.querySelector('.memoryboard').appendChild(card);
+// loop out 16 cards to memoryboard
+for (let i = 0; i < 16; i++) {
+	// creating back of memory card and add to memoryboard
+  let card = document.createElement('div');
+  card.className = 'backofcard';
+  document.querySelector('.memoryboard').appendChild(card);
 
-// images as objects
+	// test flip card to front with given color
+  card.addEventListener('click', function (event) {
+    this.style.backgroundColor = 'green';
+  });
+}
+/* memory card images as objects
 const cardImages = [
   {
     image: 'chase',
@@ -40,3 +47,4 @@ const cardImages = [
     id: 8
   }
 ];
+*/
