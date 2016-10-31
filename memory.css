@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 1em;
+  text-align: center;
+}
+.memoryboard {
+  width: 800px;
+  height: 600px;
+  border: 2px solid lightblue;
+  margin:auto;
+}
+.backofcard {
+	height: 100px;
+	width: 100px;
+	background-color: lightblue;
+	margin: 1em;
+}
