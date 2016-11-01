@@ -9,42 +9,30 @@ for (let i = 0; i < 16; i++) {
 
 	// test flip card to front with given color
   card.addEventListener('click', function (event) {
-    this.style.backgroundColor = 'green';
+    this.className = 'front';
+		this.innerHTML = "<img src='images/" + cardImages[i] + ".png'>";
   });
 }
-/* memory card images as objects
-const cardImages = [
-  {
-    image: 'chase',
-    id: 1
-  },
-  {
-    image: 'everest',
-    id: 2
-  },
-  {
-    image: 'marshall',
-    id: 3
-  },
-  {
-    image: 'rocky',
-    id: 4
-  },
-  {
-    image: 'rubble',
-    id: 5
-  },
-  {
-    image: 'ryder',
-    id: 6
-  },
-  {
-    image: 'skye',
-    id: 7
-  },
-  {
-    image: 'zuma',
-    id: 8
+ // memory card images as objects
+const cardImages = ['chase', 'chase', 'everest', 'everest', 'marshall', 'marshall', 'rocky', 'rocky', 'rubble', 'rubble', 'ryder', 'ryder', 'skye', 'skye', 'zuma', 'zuma'];
+
+// get and rewrite shuffle
+function shuffle (array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   }
-];
-*/
+
+  return array;
+}
+shuffle(cardImages);
+console.log(cardImages);
