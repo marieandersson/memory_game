@@ -28,36 +28,28 @@ function shuffle (array) {
 shuffle(cards);
 console.log(cards);
 
+// temp array
+let clickedCards = [];
+function onClick (card) {
+	card.element.className = 'front';
+	card.element.innerHTML = "<img src='images/" + card.image + ".png'>";
+	card.turned = true;
+};
 // Then put all the cards on the game board with the back facing up
 for (let i = 0; i < cards.length; i++) {
 	// creating html div as memory card
-  let card = document.createElement('div');
-  card.className = 'backofcard';
-  document.querySelector('.memoryboard').appendChild(card);
+  let cardElement = document.createElement('div');
+  cardElement.className = 'backofcard';
+  document.querySelector('.memoryboard').appendChild(cardElement);
+	cards[i].element = cardElement;
 
 	// flip card to front when clicked
-  card.addEventListener('click', function (event) {
-    this.className = 'front';
-    this.innerHTML = "<img src='images/" + cards[i].image + ".png'>";
+  cardElement.addEventListener('click', function (event) {
+    onClick(cards[i]);
   });
 }
 
-let clicks = 0;
-const getCards = document.querySelectorAll('.backofcard');
-getCards.forEach (function(cardClicks) {
-	cardClicks.addEventListener('click', function(event) {
-		clicks++;
-		if (clicks == 2) {
-			let turnedCards = document.querySelectorAll('.front');
-			if (turnedCards[0].src == turnedCards[1].src) {
-				console.log('par!');
-				clicks = 0;
-			} else {
 
-			}
-		}
-	});
-});
 
 
 //function countClicks ()
