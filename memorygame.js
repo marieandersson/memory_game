@@ -1,11 +1,19 @@
 'use strict';
 
  // Here's my 16 memory cards stored in an array (value equals img file name)
-const cardImages = ['chase', 'chase', 'everest', 'everest', 'marshall', 'marshall', 'rocky', 'rocky', 'rubble', 'rubble', 'ryder', 'ryder', 'skye', 'skye', 'zuma', 'zuma'];
+let cardImages = ['chase', 'everest', 'marshall', 'rocky', 'rubble', 'ryder', 'skye', 'zuma'];
+let cards = [];
+cardImages.forEach (function(image) {
+	cards.push({image: image, turned: false});
+	cards.push({image: image, turned: false});
+});
+
 
 // Let's shuffle the memory cards using Fisher–Yates shuffle
 function shuffle (array) {
-  let m = array.length, t, i;
+  let m = array.length;
+	let t;
+	let i;
   // While there remain elements to shuffle…
   while (m) {
     // Pick a remaining element…
@@ -17,11 +25,11 @@ function shuffle (array) {
   }
   return array;
 }
-shuffle(cardImages);
-console.log(cardImages);
+shuffle(cards);
+console.log(cards);
 
 // Then put all the cards on the game board with the back facing up
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < cards.length; i++) {
 	// creating html div as memory card
   let card = document.createElement('div');
   card.className = 'backofcard';
@@ -30,7 +38,7 @@ for (let i = 0; i < 16; i++) {
 	// flip card to front when clicked
   card.addEventListener('click', function (event) {
     this.className = 'front';
-    this.innerHTML = "<img src='images/" + cardImages[i] + ".png'>";
+    this.innerHTML = "<img src='images/" + cards[i].image + ".png'>";
   });
 }
 
@@ -40,10 +48,12 @@ getCards.forEach (function(cardClicks) {
 	cardClicks.addEventListener('click', function(event) {
 		clicks++;
 		if (clicks == 2) {
-			let frontCards = document.querySelectorAll('.front img');
-			if (frontCards[0].src == frontCards[1].src) {
+			let turnedCards = document.querySelectorAll('.front');
+			if (turnedCards[0].src == turnedCards[1].src) {
 				console.log('par!');
 				clicks = 0;
+			} else {
+
 			}
 		}
 	});
