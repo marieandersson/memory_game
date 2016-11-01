@@ -22,7 +22,7 @@ body {
 	margin: 1em;
 	display: inline-block;
 	transform: rotateY(0deg);
-	transition: transform 1s linear;
+	transition: 0.7s ease-out;
 }
 .front {
 	height: 100px;
@@ -32,7 +32,7 @@ body {
 	margin: 1em;
 	display: inline-block;
 	transform: rotateY(180deg);
-	transition: 1s linear;
+	transition: 0.7s ease-out;
 }
 .front img {
 	width: 100%;
