@@ -25,7 +25,6 @@ function shuffle (array) {
   return array;
 }
 shuffle(cards);
-console.log(cards);
 
 // Then put all the cards on the game board with the back facing up
 for (let i = 0; i < cards.length; i++) {
@@ -43,9 +42,10 @@ for (let i = 0; i < cards.length; i++) {
 }
 
 // compare clicked cards
+let allowedToClick = true;
 let clickedCards = [];
 function onClick (card) {
-	if (card.turned == false) {
+	if (card.turned == false && allowedToClick == true) {
 		card.element.className = 'front';
 		card.turned = true;
 		clickedCards.push(card);
@@ -56,9 +56,10 @@ function onClick (card) {
 				});
 				clickedCards = [];
 			} else {
+				allowedToClick = false;
 				clickedCards.forEach (function(card) {
 					card.element.style.border = "3px solid red";
-					backToBack(clickedCards);
+					backToBack(clickedCards); // call function to reset back properties
 				});
 				clickedCards = [];
 			}
@@ -73,10 +74,12 @@ function backToBack (clickedCards) {
 			card.element.style.border = '1px solid black';
 			card.element.className = 'backofcard';
 			card.turned = false;
+			allowedToClick = true;
 		});
-	}, 1500);
+	}, 2000);
 }
+
 
 // dont be able to click befor they turned back?
 // game finnished
-// replay
+// replay - button play again or new game
