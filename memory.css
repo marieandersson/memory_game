@@ -24,10 +24,13 @@ body {
 	transform: rotateY(0deg);
 	transition: 0.7s ease-out;
 }
+.backofcard img {
+	display: none;
+}
 .front {
 	height: 100px;
 	width: 100px;
-	background-color: yellow;
+	background-color: lightyellow;
 	border: black 1px solid;
 	margin: 1em;
 	display: inline-block;
