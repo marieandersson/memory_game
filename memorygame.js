@@ -28,12 +28,26 @@ function shuffle (array) {
 shuffle(cards);
 console.log(cards);
 
-// temp array
+// function to check clicked cards and compare them in a temp array
 let clickedCards = [];
 function onClick (card) {
-	card.element.className = 'front';
-	card.element.innerHTML = "<img src='images/" + card.image + ".png'>";
-	card.turned = true;
+	if (card.turned == false) {
+		card.element.className = 'front';
+		card.element.innerHTML = "<img src='images/" + card.image + ".png'>";
+		card.turned = true;
+		clickedCards.push(card.image);
+		if (clickedCards.length == 2) {
+			if (clickedCards[0] == clickedCards[1]) {
+				//add green border
+				//empty array
+			} else {
+				//add temp red border
+				// turn cards
+				// set turned to false
+				//empty array
+			}
+		}
+	}
 };
 // Then put all the cards on the game board with the back facing up
 for (let i = 0; i < cards.length; i++) {
@@ -48,12 +62,3 @@ for (let i = 0; i < cards.length; i++) {
     onClick(cards[i]);
   });
 }
-
-
-
-
-//function countClicks ()
-// new loop - count clicks, if two cards cliked - matching. reset count click.
-// if not matching - set all cards to class backofcard.
-// when all cards have class front - game finished
-// replay game with button by calling shufflefunction and set all cards to class backofcard
