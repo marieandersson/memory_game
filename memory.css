@@ -5,6 +5,16 @@ body {
   padding: 1em;
   text-align: center;
 }
+.playButton {
+	background-color: lightgray;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-bottom: 0.5em;
+}
+button:hover {
+	cursor: pointer;
+}
+
 .memoryboard {
   width: 600px;
   height: 600px;
