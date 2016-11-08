@@ -1,54 +1,118 @@
-* {
-  box-sizing: border-box;
-}
+
 body {
-  padding: 1em;
+  padding: 0;
   text-align: center;
+	background-image: url(background.jpg);
+	background-size: cover;
+	background-color: #d0e2ec;
 }
-.playButton {
-	background-color: lightgray;
+.content {
+	width: 1100px;
+	margin: 0;
+	padding: 0 4em;
+}
+header {
+	width: 30%;
+	height: 600px;
+	margin: 2em 0 2em 0;
+	padding: 1em;
+	float: left;
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+header figure img {
+	width: 100%;
+}
+header h1, h2 {
+	font-family: Geneva, Helvetica, sans-serif;
+	color: #2a363b;
+	margin-top: 0;
+}
+.rulesHeader {
+	font-size: 1.1em;
 	border: 1px solid black;
 	border-radius: 5px;
-	margin-bottom: 0.5em;
 }
-button:hover {
+.rulesText {
+	font-size: 0.8em;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility .5s, opacity .5s ease-in-out;
+}
+.rules:hover > .rulesText {
+	visibility: visible;
+	opacity: 1;
+}
+.rules {
+	margin: 1em 2em;
+	padding: 1em 1em 0.5em;
+}
+main {
+	width: 70%;
+	height: 100vh;
+	margin: 0;
+	padding: 2em 0;
+	float: right;
+}
+.playButton {
+	font-family: Geneva, Helvetica, sans-serif;
+	height: 70px;
+	width: 70px;
+	background-color: #6ec9ed;
+	border: 1px solid gray;
+	margin: 0.5em;
+	border-radius: 35px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition-duration: 0.4s;
+}
+.playButton:hover {
 	cursor: pointer;
+	background-color: #029cde;
 }
 
 .memoryboard {
   width: 600px;
   height: 600px;
-  border: 2px solid lightblue;
+	background-color: rgba(255, 255, 255, 0.8);
 	padding: 1em;
-  margin:auto;
+	margin: 0 3em;
+	border: 1px gray solid;
+	border-radius: 5px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
-.backofcard {
+
+/* cards, back and front */
+.backofcard, .front {
 	height: 100px;
 	width: 100px;
-	background-color: black;
-	margin: 1em;
 	display: inline-block;
+	margin: 1em;
+	border: 1px solid gray;
+	border-radius: 3px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-image: url(paw_pattern.jpg);
+  background-color: #c41e10;
+}
+.backofcard {
 	transform: rotateY(0deg);
-	transition: 0.7s ease-out;
+	transition: 0.5s linear;
 }
 .backofcard img {
-	display: none;
+	opacity: 0;
 }
 .front {
-	height: 100px;
-	width: 100px;
-	background-color: lightyellow;
-	border: black 1px solid;
-	margin: 1em;
-	display: inline-block;
 	transform: rotateY(180deg);
-	transition: 0.7s ease-out;
+	transition: 0.5s linear;
 }
 .front img {
 	width: 100%;
 	padding: 0;
 	margin: 0;
+	opacity: 1;
+	border-radius: 2px;
+  transition: opacity 0.3s ease-in;
+	transition-delay: 0.2s;
 }

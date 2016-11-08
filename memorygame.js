@@ -31,7 +31,7 @@ function addCardsToBoard () {
 	for (let i = 0; i < cards.length; i++) {
 		// creating html div as memory card
 	  let cardElement = document.createElement('div');
-		cardElement.innerHTML = "<img src='images/" + cards[i].image + ".png'>";
+		cardElement.innerHTML = "<img src='card_images/" + cards[i].image + ".png'>";
 	  cardElement.className = 'backofcard';
 	  document.querySelector('.memoryboard').appendChild(cardElement);
 		cards[i].element = cardElement; //push div to object cards array
@@ -59,7 +59,7 @@ function onClick (card) {
 	}
 	if (clickedCards[0].image == clickedCards[1].image) {
 		clickedCards.forEach (function(card) {
-			card.element.style.border = '3px solid green';
+			card.element.style.border = '3px solid #93bd41'; // green border
 		});
 		if (isGameFinished()) {
 			console.log("slut på spel");
@@ -67,7 +67,7 @@ function onClick (card) {
 	} else {
 		allowedToClick = false; // unable to click until cards been turned to back
 		clickedCards.forEach (function(card) {
-			card.element.style.border = "3px solid red";
+			card.element.style.border = "3px solid #c41e10"; //red border
 			backToBack(clickedCards); // call function to reset back properties
 		});
 	}
@@ -78,7 +78,7 @@ function onClick (card) {
 function backToBack (clickedCards) {
 	setTimeout(function() {
 		clickedCards.forEach (function(card) {
-			card.element.style.border = '1px solid black';
+			card.element.style.border = '1px solid gray';
 			card.element.className = 'backofcard';
 			card.turned = false;
 			allowedToClick = true;
@@ -98,6 +98,7 @@ function isGameFinished () {
 
 // lets click the button and play again NOT WORKING
 function playAgain () {
+	clickedCards = [];
 	cards.forEach (function(card) {
 		card.element.remove();
 		card.element = null;
