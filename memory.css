@@ -8,13 +8,14 @@ body {
 }
 .content {
 	width: 1100px;
-	margin: 0;
-	padding: 0 4em;
+	height: 100vh;
+	margin: 0 auto;
+	padding: 0;
 }
 header {
-	width: 30%;
+	width: 280px;
 	height: 600px;
-	margin: 2em 0 2em 0;
+	margin: 0 3em;
 	padding: 1em;
 	float: left;
 	background-color: rgba(255, 255, 255, 0.8);
@@ -29,13 +30,23 @@ header h1, h2 {
 	color: #2a363b;
 	margin-top: 0;
 }
-.rulesHeader {
-	font-size: 1.1em;
-	border: 1px solid black;
-	border-radius: 5px;
+.rules {
+	margin: 1em 2.5em;
+	padding: 1em 1em 0.5em;
+}
+.rulesHeading {
+	font-size: 1em;
+	border: 1px solid gray;
+	border-radius: 3px;
+	padding: 0.3em;
+	margin-top: 2em;
+	background-color: #6ec9ed;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition-duration: 0.4s;
 }
 .rulesText {
 	font-size: 0.8em;
+	text-align: left;
 	visibility: hidden;
 	opacity: 0;
 	transition: visibility .5s, opacity .5s ease-in-out;
@@ -44,17 +55,11 @@ header h1, h2 {
 	visibility: visible;
 	opacity: 1;
 }
-.rules {
-	margin: 1em 2em;
-	padding: 1em 1em 0.5em;
+.rules:hover > .rulesHeader {
+	background-color: #029cde;
+	margin-top: 0;
 }
-main {
-	width: 70%;
-	height: 100vh;
-	margin: 0;
-	padding: 2em 0;
-	float: right;
-}
+
 .playButton {
 	font-family: Geneva, Helvetica, sans-serif;
 	height: 70px;
@@ -76,7 +81,7 @@ main {
   height: 600px;
 	background-color: rgba(255, 255, 255, 0.8);
 	padding: 1em;
-	margin: 0 3em;
+	margin: 2em 3em;
 	border: 1px gray solid;
 	border-radius: 5px;
 	display: flex;
@@ -100,8 +105,14 @@ main {
 	transform: rotateY(0deg);
 	transition: 0.5s linear;
 }
+.backofcard:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 .backofcard img {
+	width: 100%;
 	opacity: 0;
+	transition: opacity 0.3s ease-out;
+	transition-delay: 0.1s;
 }
 .front {
 	transform: rotateY(180deg);
