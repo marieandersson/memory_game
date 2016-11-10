@@ -62,7 +62,9 @@ function onClick (card) {
 			card.element.style.border = '3px solid #93bd41'; // green border
 		});
 		if (isGameFinished()) {
-			console.log("slut på spel");
+			let star = document.createElement('div');
+			star.className = 'star';
+			document.querySelector('.memoryboard').appendChild(star);
 		}
 	} else {
 		allowedToClick = false; // unable to click until cards been turned to back
@@ -96,9 +98,10 @@ function isGameFinished () {
 	return true;
 }
 
-// lets click the button and play again NOT WORKING
+// lets click the button and play again
 function playAgain () {
 	clickedCards = [];
+	document.querySelector('.star').remove();
 	cards.forEach (function(card) {
 		card.element.remove();
 		card.element = null;
