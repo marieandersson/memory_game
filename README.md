@@ -1,5 +1,5 @@
 # Paw Patrol Memory
-###### (a.k.a. school assignment Fuzzy Memory)
+#### (a.k.a. school assignment Fuzzy Memory)
 
 This is a classic memory game for kids written in HTML, CSS and JavaScript.   
 The rules are simple - turn the cards two at a time and try to find matching pairs. If they don't match they will be turned back again. Once you have find all eight pairs you win! A perfect game to play over and over and over again.
