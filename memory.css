@@ -118,7 +118,7 @@ header h1 {
 }
 .backofcard img {
 	width: 100%;
-	opacity: 0;
+	opacity: 1; /* change to 0 after testing */
 	transition: opacity 0.3s ease-out;
 	transition-delay: 0.1s;
 }
