@@ -135,6 +135,14 @@ header h1 {
 	transition-delay: 0.2s;
 }
 
+/* set border colors to cards when comparing them */
+#greenBorder {
+	border: 2px solid #93bd41;
+}
+#redBorder {
+	border: 2px solid #c41e10;
+}
+
 /* finish star */
 @keyframes fadein {
 	from {opacity: 0;}

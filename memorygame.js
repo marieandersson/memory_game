@@ -1,24 +1,39 @@
 'use strict';
 
-// create memorycards and put them in array
+// Create memorycards and put them in an array
 let cardImages = ['chase', 'everest', 'marshall', 'rocky', 'rubble', 'ryder', 'skye', 'zuma'];
 let cards = [];
 cardImages.forEach (function(image) {
- // push twice to get pairs
+ // push each object twice to get pairs
  cards.push({image: image, turned: false});
  cards.push({image: image, turned: false});
 });
 
-// prepare game
+// Define if player is allowed to click on cards
 let allowedToClick = true;
-// array to put turned cards in temporary while comparing them
+// Create array to temporary store cards in while comparing them
 let clickedCards = [];
+// Let the game begin!
 startGame(cards);
 
+// Shuffle cards and put them on memory board
+function startGame (cards) {
+	shuffle(cards);
+	for (let i = 0; i < cards.length; i++) {
+	  let cardElement = document.createElement('div');
+		cardElement.innerHTML = "<img src='card_images/" + cards[i].image + ".png'>";
+	  cardElement.className = 'backofcard';
+	  document.querySelector('.memoryboard').appendChild(cardElement);
+		// Push div to card object in cards array
+		cards[i].element = cardElement;
 
-// FUNCTIONS
+	  cardElement.addEventListener('click', function (event) {
+	    onClick(cards[i]);
+	  });
+	}
+}
 
-// shuffle memory cards (using Fisher–Yates shuffle)
+// Shuffle memory cards using Fisher–Yates shuffle
 function shuffle (array) {
   let m = array.length;
 	let t;
@@ -35,6 +50,55 @@ function shuffle (array) {
   return array;
 }
 
+// Flip clicked card to front and compare when two cards have been turned
+function onClick (card) {
+	if (card.turned || !allowedToClick) {
+		return;
+	}
+	flipCardToFront(card);
+	if (clickedCards.length != 2) {
+		return;
+	}
+	// Compare clicked cards
+	if (clickedCards[0].image == clickedCards[1].image) {
+		clickedCards.forEach (function(card) {
+			// Set green border when player gets matching pair
+			card.element.setAttribute('id','greenBorder');
+		});
+		if (isGameFinished()) {
+			givePlayerStar();
+		}
+	} else {
+		// Player unable to click until cards have been turned back
+		allowedToClick = false;
+		clickedCards.forEach (function(card) {
+			// Set temporary red border if cards don't match
+			card.element.setAttribute('id','redBorder');
+			flipBackToBack(clickedCards);
+		});
+	}
+	clickedCards = [];
+};
+
+// Flip card to front when clicked
+function flipCardToFront (card) {
+	card.element.className = 'front';
+	card.turned = true;
+	clickedCards.push(card);
+}
+
+// Flip cards back if they don't match
+function flipBackToBack (clickedCards) {
+	setTimeout(function() {
+		clickedCards.forEach (function(card) {
+			card.element.removeAttribute("id");
+			card.element.className = 'backofcard';
+			card.turned = false;
+			allowedToClick = true;
+		});
+	}, 2000); // 2 sec delay
+}
+
 // Check if game is finished
 function isGameFinished () {
 	for (let i = 0; i < cards.length; i++) {
@@ -45,79 +109,11 @@ function isGameFinished () {
 	return true;
 }
 
-// player gets a star when game is finished
+// Give player a star when game is finished
 function givePlayerStar () {
 	let star = document.createElement('div');
 	star.className = 'star';
 	document.querySelector('.memoryboard').appendChild(star);
-}
-
-function flipCardToFront (card) {
-	card.element.className = 'front';
-	card.turned = true;
-	clickedCards.push(card);
-}
-
-function flipBackToBack (clickedCards) {
-	setTimeout(function() {
-		clickedCards.forEach (function(card) {
-			card.element.style.border = '1px solid gray';
-			card.element.className = 'backofcard';
-			card.turned = false;
-			allowedToClick = true;
-		});
-	}, 2000); // 2 sec delay, so that the cards don't turn back immediately
-}
-
-// call this function when player clicks on a card
-function onClick (card) {
-	if (card.turned || !allowedToClick) {
-		return;
-	}
-	flipCardToFront(card);
-	if (clickedCards.length != 2) {
-		return;
-	}
-	// compare clicked cards
-	if (clickedCards[0].image == clickedCards[1].image) {
-		clickedCards.forEach (function(card) {
-			// set green border when player gets matching pair
-			card.element.style.border = '3px solid #93bd41';
-		});
-		if (isGameFinished()) {
-			givePlayerStar();
-		}
-	} else {
-		// player unable to click until cards been turned back
-		allowedToClick = false;
-		clickedCards.forEach (function(card) {
-			// set temporary red border if cards don't match
-			card.element.style.border = "3px solid #c41e10";
-			// then call function to reset back properties
-			flipBackToBack(clickedCards);
-		});
-	}
-	// empty clicked cards array
-	clickedCards = [];
-};
-
-// start game by shuffle cards and put them on memory board
-function startGame (cards) {
-	shuffle(cards);
-	for (let i = 0; i < cards.length; i++) {
-		// creating div as memory card
-	  let cardElement = document.createElement('div');
-		cardElement.innerHTML = "<img src='card_images/" + cards[i].image + ".png'>";
-	  cardElement.className = 'backofcard';
-	  document.querySelector('.memoryboard').appendChild(cardElement);
-		// also push div to card object in cards array
-		cards[i].element = cardElement;
-
-		// flip card to front when clicked
-	  cardElement.addEventListener('click', function (event) {
-	    onClick(cards[i]);
-	  });
-	}
 }
 
 // Click button to play again
