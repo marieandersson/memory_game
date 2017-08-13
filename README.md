@@ -4,7 +4,7 @@
 This is a classic memory game for kids written in HTML, CSS and JavaScript.   
 The rules are simple - turn the cards two at a time and try to find matching pairs. If they don't match they will be turned back again. Once you have find all eight pairs you win! A perfect game to play over and over and over again.
 
-## Setup
+## Setup game
 It's also simple to get started. Just clone this repo to your desktop and open **index.html** in your browser. Game on!
 
 ## License
